@@ -10,7 +10,6 @@ import pandas as pd
 import random
 from bs4 import BeautifulSoup
 
-date = pd.read_excel('中国交易所资料/大商所所有品种换约资料/交易日期/IOE1 DATE DATA.xlsx',encoding = 'utf-8')
 url = 'http://www.dce.com.cn/publicweb/quotesdata/memberDealPosiQuotes.html'
 
 #以下是分期獲取的代碼
@@ -30,12 +29,18 @@ url = 'http://www.dce.com.cn/publicweb/quotesdata/memberDealPosiQuotes.html'
 #     res.close()
 # =============================================================================
     
-for x in range(0,len(date.dropna())): 
-    split_date = date['Date'][x].strftime('%Y-%m-%d').split('-')
+now_date = datetime.datetime(2017,9,7)
+last_date = datetime.datetime(2017,9,7)
+
+while now_date < datetime.datetime.now():
+    split_date = now_date.strftime('%Y-%m-%d').split('-')
     
     try:
         data = pd.read_excel('../铁矿石/'+split_date[0]+split_date[1]+split_date[2]+'.xls',encoding='gbk')                  
     except:
-        #print (date['Date'][x])
+        now_date = last_date + datetime.timedelta(days = 1)
+        last_date = now_date
         continue
     data.to_csv('../铁矿石2/'+split_date[0]+split_date[1]+split_date[2]+'.csv',encoding='utf-8-sig',index=None)
+    now_date = last_date + datetime.timedelta(days = 1)
+    last_date = now_date
