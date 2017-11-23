@@ -25,8 +25,7 @@ prox = {
         'http':'43.240.138.31:8080',
         'http':'121.248.112.20:3128'}
           
-now_date = datetime.datetime(2017,9,7)
-last_date = datetime.datetime(2017,9,7)
+now_date = datetime.datetime(2017,11,17)
 while now_date < datetime.datetime.now():
     split_date = now_date.strftime('%Y-%m-%d').split('-')
     
@@ -41,10 +40,10 @@ while now_date < datetime.datetime.now():
                 'exportFlag':'excel'}
     tmp = now_date
         
-    res = requests.post(url_excel,data=formData,stream=True)
+    res = requests.post(url_excel,data=formData,stream=True,proxies = prox)
         
     while(res.status_code != 200):
-        res = requests.post(url_excel,data=formData,stream=True)
+        res = requests.post(url_excel,data=formData,stream=True,proxies = prox)
         time.sleep(random.randrange(2,5))
 
     #存成excel檔
@@ -54,8 +53,7 @@ while now_date < datetime.datetime.now():
     time.sleep(random.randrange(2,5))
     
     #日期加1
-    now_date = last_date + datetime.timedelta(days = 1)
-    last_date = now_date
+    now_date = now_date + datetime.timedelta(days = 1)
     
 '''    
 #以下是分期獲取的代碼
