@@ -25,7 +25,7 @@ prox = {
         'http':'43.240.138.31:8080',
         'http':'121.248.112.20:3128'}
           
-now_date = datetime.datetime(2017,11,17)
+now_date = datetime.datetime(2017,11,23)
 while now_date < datetime.datetime.now():
     split_date = now_date.strftime('%Y-%m-%d').split('-')
     

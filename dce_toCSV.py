@@ -29,7 +29,7 @@ url = 'http://www.dce.com.cn/publicweb/quotesdata/memberDealPosiQuotes.html'
 #     res.close()
 # =============================================================================
     
-now_date = datetime.datetime(2017,11,14)
+now_date = datetime.datetime(2017,11,23)
 
 while now_date < datetime.datetime.now():
     split_date = now_date.strftime('%Y-%m-%d').split('-')
