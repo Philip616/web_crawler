@@ -29,15 +29,15 @@ url = 'http://www.dce.com.cn/publicweb/quotesdata/memberDealPosiQuotes.html'
 #     res.close()
 # =============================================================================
     
-now_date = datetime.datetime(2017,11,23)
+now_date = datetime.datetime(2017,11,24)
 
 while now_date < datetime.datetime.now():
     split_date = now_date.strftime('%Y-%m-%d').split('-')
     
     try:
-        data = pd.read_excel('../铁矿石/'+split_date[0]+split_date[1]+split_date[2]+'.xls',encoding='gbk')                  
+        data = pd.read_excel('../大商所更新/'+split_date[0]+split_date[1]+split_date[2]+'.xls',encoding='gbk')                  
     except:
         now_date = now_date + datetime.timedelta(days = 1)
         continue
-    data.to_csv('../铁矿石2/'+split_date[0]+split_date[1]+split_date[2]+'.csv',encoding='gbk',index=None)
+    data.to_csv('../大商所更新2/'+split_date[0]+split_date[1]+split_date[2]+'.csv',encoding='gbk',index=None)
     now_date = now_date + datetime.timedelta(days = 1)

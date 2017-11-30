@@ -25,7 +25,7 @@ prox = {
         'http':'43.240.138.31:8080',
         'http':'121.248.112.20:3128'}
           
-now_date = datetime.datetime(2017,11,23)
+now_date = datetime.datetime(2017,11,24)
 while now_date < datetime.datetime.now():
     split_date = now_date.strftime('%Y-%m-%d').split('-')
     
@@ -47,7 +47,7 @@ while now_date < datetime.datetime.now():
         time.sleep(random.randrange(2,5))
 
     #存成excel檔
-    with open('../铁矿石/'+split_date[0]+split_date[1]+split_date[2]+'.xls', 'wb') as file:
+    with open('../大商所更新/'+split_date[0]+split_date[1]+split_date[2]+'.xls', 'wb') as file:
         file.write(res.content)
     res.close()
     time.sleep(random.randrange(2,5))
