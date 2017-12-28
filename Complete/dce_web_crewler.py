@@ -22,38 +22,49 @@ session.mount('http://', adapter)
 
 prox = {
         'http':'61.153.67.110:9999',
-        'http':'43.240.138.31:8080',
         'http':'121.248.112.20:3128'}
           
-now_date = datetime.datetime(2017,11,24)
-while now_date < datetime.datetime.now():
-    split_date = now_date.strftime('%Y-%m-%d').split('-')
-    
-    #网站抓取设定
-    formData = {'memberDealPosiQuotes.variety':'i',
-                'memberDealPosiQuotes.trade_type':'0',
-                'year':split_date[0],
-                'month':str(int(split_date[1])-1),
-                'day':str(int(split_date[2])),
-                'contract.contract_id':'all',
-                'contract.variety_id':'i',
-                'exportFlag':'excel'}
-    tmp = now_date
-        
-    res = requests.post(url_excel,data=formData,stream=True,proxies = prox)
-        
-    while(res.status_code != 200):
-        res = requests.post(url_excel,data=formData,stream=True,proxies = prox)
-        time.sleep(random.randrange(2,5))
+contract_id=['pp','jm','jd','fb','cs','bb','y','v','p','m','l','j','i','c','a','b']
 
-    #存成excel檔
-    with open('../大商所更新/'+split_date[0]+split_date[1]+split_date[2]+'.xls', 'wb') as file:
-        file.write(res.content)
-    res.close()
-    time.sleep(random.randrange(2,5))
+for i in range(2,len(contract_id)):
+    now_date = datetime.datetime(2017,12,27)
+    print(contract_id[i])
+    while now_date < datetime.datetime.now():
+        split_date = now_date.strftime('%Y-%m-%d').split('-')
+        
+        #网站抓取设定
+        formData = {'memberDealPosiQuotes.variety':contract_id[i],
+                    'memberDealPosiQuotes.trade_type':'0',
+                    'year':split_date[0],
+                    'month':str(int(split_date[1])-1),
+                    'day':str(int(split_date[2])),
+                    'contract.contract_id':'all',
+                    'contract.variety_id':contract_id[i],
+                    'exportFlag':'excel'}
+        tmp = now_date
+        
+        res = requests.post(url_excel,data=formData,stream=True,proxies = prox)
+            
+        while(res.status_code != 200):
+            res = requests.post(url_excel,data=formData,stream=True,proxies = prox)
+            time.sleep(random.randrange(2,5))
     
-    #日期加1
-    now_date = now_date + datetime.timedelta(days = 1)
+        #存成excel檔
+        with open('../../大商所更新/'+split_date[0]+split_date[1]+split_date[2]+'.xls', 'wb') as file:
+            file.write(res.content)
+        res.close()
+        time.sleep(random.randrange(2,5))
+        
+        try:
+            data = pd.read_excel('../../大商所更新/'+split_date[0]+split_date[1]+split_date[2]+'.xls',encoding='gbk') 
+            data.to_csv('../../各交易所期貨持倉量/大商所/'+contract_id[i]+"/"+split_date[0]+split_date[1]+split_date[2]+'.csv',encoding='gbk',index=None)                 
+            now_date = now_date + datetime.timedelta(days = 1)
+        except Exception as e:
+            #日期加1
+            now_date = now_date + datetime.timedelta(days = 1)
+
+        
+        
     
 '''    
 #以下是分期獲取的代碼
