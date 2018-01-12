@@ -26,8 +26,8 @@ prox = {
           
 contract_id=['pp','jm','jd','fb','cs','bb','y','v','p','m','l','j','i','c','a','b']
 
-for i in range(2,len(contract_id)):
-    now_date = datetime.datetime(2017,12,27)
+for i in range(0,len(contract_id)):
+    now_date = datetime.datetime(2018,1,9)
     print(contract_id[i])
     while now_date < datetime.datetime.now():
         split_date = now_date.strftime('%Y-%m-%d').split('-')
