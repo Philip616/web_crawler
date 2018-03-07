@@ -27,9 +27,10 @@ prox = {
         'https':'116.199.2.210:80'}
           
 contract_id=['pp','jm','jd','fb','cs','bb','y','v','p','m','l','j','i','c','a','b']
+#contract_id=['v']
 
 for i in range(0,len(contract_id)):
-    now_date = datetime.datetime(2018,1,27)
+    now_date = datetime.datetime(2018,2,26)
     print(contract_id[i])
     
     while now_date < datetime.datetime.now():
