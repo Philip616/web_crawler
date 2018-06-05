@@ -30,7 +30,7 @@ contract_id=['pp','jm','jd','fb','cs','bb','y','v','p','m','l','j','i','c','a','
 #contract_id=['v']
 
 for i in range(0,len(contract_id)):
-    now_date = datetime.datetime(2018,5,25)
+    now_date = datetime.datetime(2018,6,4)
     print(contract_id[i])
     
     while now_date < datetime.datetime.now():
@@ -72,7 +72,7 @@ for i in range(0,len(contract_id)):
         res.encoding = 'utf-8-sig'
 
         while(res.status_code != 200):
-            res = requests.post(url_excel,data=formData,stream=True, proxies = prox)
+            res = requests.post(url_excel,data=formData,stream=True) #proxies = prox
             time.sleep(random.randrange(2,7))
 
     
