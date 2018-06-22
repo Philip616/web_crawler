@@ -26,14 +26,15 @@ prox = {
         'https':'116.199.2.196:82',
         'https':'116.199.2.210:80'}
           
-contract_id=['pp','jm','jd','fb','cs','bb','y','v','p','m','l','j','i','c','a','b']
-#contract_id=['v']
+#contract_id=['pp','jm','jd','fb','cs','bb','y','v','p','m','l','j','i','c','a','b']
+contract_id=['pp','jm','jd','fb','cs','bb','y','v','p','m','l','j','c','a','b','i']
+#contract_id=['i']
 
 for i in range(0,len(contract_id)):
-    now_date = datetime.datetime(2018,6,4)
+    now_date = datetime.datetime(2018,6,21)
     print(contract_id[i])
     
-    while now_date < datetime.datetime.now():
+    while now_date <= datetime.datetime.now():
         
         tmp = now_date
         
