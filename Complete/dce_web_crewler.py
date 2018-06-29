@@ -31,7 +31,7 @@ contract_id=['pp','jm','jd','fb','cs','bb','y','v','p','m','l','j','c','a','b','
 #contract_id=['i']
 
 for i in range(0,len(contract_id)):
-    now_date = datetime.datetime(2018,6,21)
+    now_date = datetime.datetime(2018,6,29)
     print(contract_id[i])
     
     while now_date <= datetime.datetime.now():
